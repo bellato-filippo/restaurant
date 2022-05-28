@@ -1,0 +1,7 @@
+<p>menu works!</p>
+<ul>
+    <li *ngFor="let item of plates" ><a [routerLink]="['/plate/' + item.id]">{{item.name}} - {{item.price}} €</a><button (click)="removePlate(item.id)">Remove</button></li>
+</ul>
+<div *ngIf="authService.isAdmin()">
+    <button [routerLink]="['/create-plate']">Add plate</button>
+</div>

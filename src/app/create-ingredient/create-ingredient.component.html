@@ -1,0 +1,6 @@
+<p>create-ingredient works!</p>
+<form (ngSubmit)="send()" [formGroup]="form">
+    Name: <input type="text" placeholder="Name" formControlName="name"><br>
+    Expiry date: <input type="date" placeholder="Expiry date" formControlName="expiryDate"><br>
+    <button type="submit">Create ingredient</button>
+</form>

@@ -1,0 +1,17 @@
+<div>
+    <p>plate works!</p>
+    {{plate.name}}
+    <ul>
+        <li *ngFor="let item of plate.ingredients">{{item.name}}</li>
+    </ul>
+    <button [routerLink]="['/menu']">Go back</button>
+    <div *ngIf="authService.isAdmin()">
+        <button (click)="edit()">Add ingredient to plate</button>
+    </div>
+</div>
+
+<div *ngIf="plateEdit">
+    <ul>
+        <li *ngFor="let item of ingredients"><a>{{item.name}} - expiry date: {{item.expiryDate | date: 'shortDate'}}</a><button (click)="addIngredient(item.id)">Add</button></li>
+    </ul>
+</div>

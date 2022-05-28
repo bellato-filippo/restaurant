@@ -1,0 +1,7 @@
+<p>ingredients works!</p>
+<ul>
+    <li *ngFor="let item of ingredients"><a>{{item.name}} - expiry date: {{item.expiryDate | date: 'shortDate'}}</a></li>
+</ul>
+<div *ngIf="authService.isAdmin()">
+    <button [routerLink]="['/create-ingredient']">Create new ingredient</button>
+</div>

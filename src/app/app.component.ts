@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'restaurant';
+  auth: boolean;
+
+  constructor() {
+    this.auth = true;
+  }
 }
