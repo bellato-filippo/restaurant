@@ -25,6 +25,7 @@ export class PlateComponent {
     this.httpService.getIngredients().subscribe(res => {
       this.ingredients = res;
     });
+    console.log("loads");
     /*
     this.httpService.getPlates().subscribe(res => {
       this.plates = res;
@@ -32,9 +33,11 @@ export class PlateComponent {
     */
     let id = this.route.snapshot.paramMap.get('id') ?? "0";
     this.id = +id;
-    this.httpService.getPlateId().subscribe(res => {
+    /*
+    this.httpService.getPlateById().subscribe(res => {
       this.plate = res;
     });
+    */
    }
 
    edit() {

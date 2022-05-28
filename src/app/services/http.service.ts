@@ -42,7 +42,7 @@ export class HttpService {
         this.http.post<Has>(this.ROOT_URL + '/has/new', has);
     }
 
-    getPlateId(): Observable<Plate> {
+    getPlateById(): Observable<Plate> {
         return this.http.get<Plate>(this.ROOT_URL + "/plate/6");
     }
 }
