@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Plate } from '../models/plate.model';
-import { PlateService } from '../services/plate.service';
+import { HttpService } from '../services/http.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-menu',
@@ -10,23 +11,15 @@ import { PlateService } from '../services/plate.service';
 })
 export class MenuComponent {
   
-  plates: Plate[] = [];
+  plates: Plate[] = new Array();
 
-  constructor(public authService: AuthService, public plateService: PlateService) {
-    this.authService = new AuthService();
-    this.plateService.currentPlate.subscribe(plates => this.plates = plates)
+  constructor(public authService: AuthService, public httpService: HttpService) {
+    this.httpService.getPlates().subscribe(res => {
+      this.plates = res;
+    })
   }
 
-  removePlate(id: number) {
-    this.plates.forEach((element, index) => {
-      if (element.id == id) {
-        this.plates.splice(index, 1);
-      }
-    });
-    this.updatePlates();
-  }
 
-  updatePlates() {
-    this.plateService.changeMessage(this.plates);
-  }
+
+
 }
