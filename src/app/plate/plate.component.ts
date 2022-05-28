@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Ingredient } from '../models/ingredient.model';
 import { Plate } from '../models/plate.model';
 import { AuthService } from '../services/auth.service';
-import { IngredientService } from '../services/ingredient.service';
-import { PlateService } from '../services/plate.service';
+import { HttpService } from '../services/http.service';
+
 
 @Component({
   selector: 'app-plate',
@@ -14,22 +14,26 @@ import { PlateService } from '../services/plate.service';
 export class PlateComponent {
 
 
-  plates: Plate[] = [];
+  //plates: Plate[] = [];
   plate: Plate = new Plate();
   id: number;
   plateEdit: boolean;
   ingredients: Ingredient[] = [];
 
-  constructor(public route: ActivatedRoute, public plateService: PlateService, public authService: AuthService, public ingredientService: IngredientService) {
+  constructor(public route: ActivatedRoute, public httpService: HttpService, public authService: AuthService) {
     this.plateEdit = false;
-    this.ingredientService.currentIngredient.subscribe(ingredients => this.ingredients = ingredients);
-    this.plateService.currentPlate.subscribe(plates => this.plates = plates);
+    this.httpService.getIngredients().subscribe(res => {
+      this.ingredients = res;
+    });
+    /*
+    this.httpService.getPlates().subscribe(res => {
+      this.plates = res;
+    });
+    */
     let id = this.route.snapshot.paramMap.get('id') ?? "0";
     this.id = +id;
-    this.plates.forEach((element, index) => {
-      if(this.plates[index].id == this.id) {
-        this.plate = this.plates[index];
-      }
+    this.httpService.getPlateId().subscribe(res => {
+      this.plate = res;
     });
    }
 
@@ -39,16 +43,9 @@ export class PlateComponent {
 
     addIngredient(ingredientId: number) {
       this.ingredients.forEach((element, index) => {
-        if (element.getId() == ingredientId) {
-          this.plate.ingredients.push(this.ingredients[index]);
-          this.updatePlates();
+        if (element.id == ingredientId) {
           return;
         }
       });
     }
-
-    updatePlates() {
-      this.plateService.changeMessage(this.plates);
-    }
-
 }

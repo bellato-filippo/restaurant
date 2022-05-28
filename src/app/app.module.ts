@@ -13,7 +13,6 @@ import { PlateComponent } from './plate/plate.component';
 import { CreateIngredientComponent } from './create-ingredient/create-ingredient.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreatePlateComponent } from './create-plate/create-plate.component';
-import { ProvaComponent } from './prova/prova.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -27,7 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
     PlateComponent,
     CreateIngredientComponent,
     CreatePlateComponent,
-    ProvaComponent
   ],
   imports: [
     BrowserModule,

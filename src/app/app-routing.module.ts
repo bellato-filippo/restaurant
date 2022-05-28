@@ -7,7 +7,6 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
 import { MenuComponent } from './menu/menu.component';
 import { Page404Component } from './page404/page404.component';
 import { PlateComponent } from './plate/plate.component';
-import { ProvaComponent } from './prova/prova.component';
 
 const routes: Routes = [
   {
@@ -33,10 +32,6 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent
-  },
-  {
-    path: 'prova',
-    component: ProvaComponent
   },
   {
     path: '**',

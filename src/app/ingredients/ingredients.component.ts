@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Ingredient } from '../models/ingredient.model';
-import { IngredientService } from '../services/ingredient.service';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-ingredients',
@@ -12,11 +12,11 @@ export class IngredientsComponent {
 
   ingredients: Ingredient[] = [];
 
-  constructor(public authService: AuthService, public ingredientService: IngredientService) {
+  constructor(public authService: AuthService, public httpService: HttpService) {
     this.authService = new AuthService();
-    //this.ingredientService = new IngredientService();
-    //this.ingredients = ingredientService.getIngredients();
-    this.ingredientService.currentIngredient.subscribe(ingredients => this.ingredients = ingredients);
+    this.httpService.getIngredients().subscribe(res => {
+      this.ingredients = res;
+    })
    }
 
 

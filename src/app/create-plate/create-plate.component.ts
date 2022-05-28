@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { Plate } from '../models/plate.model';
 import { AuthService } from '../services/auth.service';
-import { PlateService } from '../services/plate.service';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-create-plate',
@@ -15,8 +15,10 @@ export class CreatePlateComponent {
   form: FormGroup;
   plates: Plate[] = [];
 
-  constructor(public authService: AuthService, public formBuilder: FormBuilder, public plateService: PlateService, public router: Router) {
-    this.plateService.currentPlate.subscribe(plates => this.plates = plates);
+  constructor(public authService: AuthService, public formBuilder: FormBuilder, public httpService: HttpService, public router: Router) {
+    this.httpService.getPlates().subscribe(res => {
+      this.plates = res;
+    });
     this.form = formBuilder.group({
       'name': ['', Validators.required],
       'price': ['', Validators.required]
@@ -38,12 +40,7 @@ export class CreatePlateComponent {
       }
     });
     max++;
-    this.plates.push(new Plate(max, name, price, []));
-    this.updatePlates();
-    this.router.navigate(['/plate/' + max]);
+    this.plates.push(new Plate(max, name, price));
+    this.router.navigate(['/plates/' + max]);
    }
-
-   updatePlates() {
-    this.plateService.changeMessage(this.plates);
-  }
 }
