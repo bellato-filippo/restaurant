@@ -1,12 +1,32 @@
-<p>create-plate works!</p>
 <div *ngIf="!authService.isAdmin()">
     You are not authorized to access this content
 </div>
 
 <div *ngIf="authService.isAdmin()">
     <form (ngSubmit)="send()" [formGroup]="form">
-        Name: <input type="text" placeholder="Name" formControlName="name"><br>
-        Price: <input type="number" placeholder="Price" formControlName="price"><br>
-        <button type="submit">Create plate</button>
+        <div class="form-group">
+            <div class="form-group row justify-content-center mt-1">
+                <label class="col-md-1">Name:</label>
+                <div class="col-md-4">
+                    <input class="form-control" type="text" placeholder="Name" formControlName="name">
+                </div>
+            </div>
+            <div class="form-group row justify-content-center mt-1">
+                <label class="col-md-1">Price:</label>
+                <div class="col-md-4">
+                    <input class="form-control" type="number" placeholder="Price" formControlName="price">
+                </div>
+            </div>
+            <div class="form-group row justify-content-center mt-1">
+                <div class="col-md-auto">
+                    <button class="btn btn-primary" type="submit">Create plate</button>
+                </div>
+            </div>
+            <div class="form-group row justify-content-center mt-1">
+                <div class="col-md-auto">
+                    <button class="btn btn-primary" [routerLink]="['/menu']">Go back</button>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
