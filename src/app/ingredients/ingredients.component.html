@@ -1,6 +1,6 @@
 <p>ingredients works!</p>
 <ul>
-    <li *ngFor="let item of ingredients"><a>{{item.name}} - expiry date: {{item.expiryDate | date: 'shortDate'}}</a></li>
+    <li *ngFor="let item of ingredients"><a>{{item.name}} - expiry date: {{item.expirydate | date: 'dd/MM/yyyy'}}</a> <button (click)="removeIngredient(item.id)">remove</button></li>
 </ul>
 <div *ngIf="authService.isAdmin()">
     <button [routerLink]="['/create-ingredient']">Create new ingredient</button>

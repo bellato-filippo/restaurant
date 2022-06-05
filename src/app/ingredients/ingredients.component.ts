@@ -16,8 +16,17 @@ export class IngredientsComponent {
     this.authService = new AuthService();
     this.httpService.getIngredients().subscribe(res => {
       this.ingredients = res;
-    })
+    });
    }
 
+   removeIngredient(id: number) {
+    this.ingredients.forEach((element, index) => {
+      if (element.id == id) {
+        this.ingredients.splice(index, 1);
+        return;
+      }
+    });
+    this.httpService.deleteIngredient(id + "");
+   }
 
 }
