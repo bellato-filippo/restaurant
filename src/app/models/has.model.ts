@@ -1,11 +1,11 @@
 export class Has {
     plate: number;
-    ingredient: string;
+    ingredient: number;
     
     constructor();
-    constructor(plate: number, ingredient: string);
-    constructor(plate?: number, ingredient?: string){
+    constructor(plate: number, ingredient: number);
+    constructor(plate?: number, ingredient?: number){
         this.plate = plate ?? 0;
-        this.ingredient = ingredient ?? "";
+        this.ingredient = ingredient ?? 0;
     }
 }

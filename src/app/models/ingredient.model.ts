@@ -1,13 +1,13 @@
 export class Ingredient {
     id: number;
     name: string;
-    expiryDate: Date;
+    expirydate: Date;
     
     constructor();
-    constructor(id: number, name: string, expiryDate: Date);
-    constructor(id?: number, name?: string, expiryDate?: Date){
+    constructor(id: number, name: string, expirydate: Date);
+    constructor(id?: number, name?: string, expirydate?: Date){
         this.id = id ?? 0;
         this.name = name ?? "";
-        this.expiryDate = expiryDate ?? new Date();
+        this.expirydate = expirydate ?? new Date();
     }
 }
