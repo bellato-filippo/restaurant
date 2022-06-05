@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-center mt-1" *ngFor="let item of plates">
-        <div class="col-md-3" [routerLink]="['/plate/' + item.id]">
-            <b>{{item.name}}</b> - {{item.price}} €
+        <div class="col-md-3 box" [routerLink]="['/plate/' + item.id]">
+            <div><b>{{item.name}}</b> - {{item.price}} €</div>
         </div>
         <div class="col-md-auto">
             <button class="btn btn-danger" (click)="removePlate(item.id)">X</button>

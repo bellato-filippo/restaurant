@@ -1,0 +1,4 @@
+.box:hover {
+    background: lightblue;
+    cursor: pointer;
+}
