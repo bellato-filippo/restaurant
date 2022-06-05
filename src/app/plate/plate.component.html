@@ -2,17 +2,16 @@
     <p>plate works!</p>
     {{plate.name}}
     <ul>
-        <li></li>
+        <li *ngFor="let item of plateIngredient"><a>{{item.name}} - expiry date: {{item.expirydate | date: 'shortDate'}}</a><a *ngIf="authService.isAdmin()"><button (click)="removeIngredient(plate.id, item.id)">Remove</button></a></li>
     </ul>
     <button [routerLink]="['/menu']">Go back</button>
     <div *ngIf="authService.isAdmin()">
         <button (click)="edit()">Add ingredient to plate</button>
     </div>
 </div>
-<!--
+
 <div *ngIf="plateEdit">
     <ul>
-        <li *ngFor="let item of ingredients"><a>{{item.name}} - expiry date: {{item.expiryDate | date: 'shortDate'}}</a><button (click)="addIngredient(item.id)">Add</button></li>
+        <li *ngFor="let item of ingredients"><a>{{item.name}} - expiry date: {{item.expirydate | date: 'shortDate'}}</a><button (click)="addIngredient(plate.id, item.id)">Add</button></li>
     </ul>
 </div>
--->
