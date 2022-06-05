@@ -63,6 +63,14 @@ export class HttpService {
         return this.http.get<Ingredient[]>(this.ROOT_URL + "/plate/" + id + "/ingredients");
     }
 
+    updatePlateNamePrice(id: string, plate: Plate) {
+        this.http.put<Plate>(this.ROOT_URL + '/plate/' + id, plate, {
+            responseType: 'text' as 'json'
+        }).subscribe(res => {
+            console.log('Plate updated');
+        });
+    }
+
     deletePlate(id: string) {
         this.http.delete(this.ROOT_URL + "/plate/" + id,{
             responseType: 'text'

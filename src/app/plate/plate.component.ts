@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Has } from '../models/has.model';
 import { Ingredient } from '../models/ingredient.model';
@@ -20,8 +21,9 @@ export class PlateComponent {
   ingredients: Ingredient[] = [];
   has: Has[] = [];
   plateIngredient: Ingredient[] = [];
+  form: FormGroup;
 
-  constructor(public route: ActivatedRoute, public httpService: HttpService, public authService: AuthService, public router: Router) {
+  constructor(public formBuilder: FormBuilder, public route: ActivatedRoute, public httpService: HttpService, public authService: AuthService, public router: Router) {
     this.plateEdit = false;
     this.httpService.getIngredients().subscribe(res => {
       this.ingredients = res;
@@ -44,6 +46,11 @@ export class PlateComponent {
         indexes.push(element.ingredient);
       }
     });
+
+    this.form = formBuilder.group({
+      'name': ['', Validators.required],
+      'price': ['', Validators.required]
+    })
    }
 
    edit() {
@@ -75,6 +82,21 @@ export class PlateComponent {
       this.httpService.deleteHas(plateId, ingredientId);
       this.router.navigateByUrl('/RefreshComponent', {skipLocationChange: true}).then(() => {
         this.router.navigate(['/plate/' + plateId]);
+      });
+    }
+
+    updateNamePrice() {
+      let name = this.form.controls['name'].value;
+      let price = this.form.controls['price'].value;
+      if (name == "") {
+        name = this.plate.name;
+      }
+      if (price == 0) {
+        price = this.plate.price;
+      }
+      this.httpService.updatePlateNamePrice(this.plate.id + "", new Plate(this.plate.id, name, price));
+      this.router.navigateByUrl('/RefreshComponent', {skipLocationChange: true}).then(() => {
+        this.router.navigate(['/plate/' + this.plate.id]);
       });
     }
 }
