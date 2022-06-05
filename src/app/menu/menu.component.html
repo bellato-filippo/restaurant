@@ -3,7 +3,7 @@
         <div class="col-md-3 box" [routerLink]="['/plate/' + item.id]">
             <div><b>{{item.name}}</b> - {{item.price}} €</div>
         </div>
-        <div class="col-md-auto">
+        <div class="col-md-auto" *ngIf="authService.isAdmin()">
             <button class="btn btn-danger" (click)="removePlate(item.id)">X</button>
         </div>
     </div>

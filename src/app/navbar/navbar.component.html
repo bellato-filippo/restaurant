@@ -3,11 +3,11 @@
     <ng-container ngbNavItem>
       <a ngbNavLink href="javascript:void(0)" [routerLink]="['/menu']">Menu</a>
     </ng-container>
-    <ng-container ngbNavItem *ngIf="authService.isAdmin()">
+    <ng-container ngbNavItem="">
       <a ngbNavLink href="javascript:void(0)" [routerLink]="['/ingredients']">Ingredients</a>
     </ng-container>
     <ng-container ngbNavItem>
-      <a ngbNavLink>About</a>
+      <a ngbNavLink href="javascript:void(0)" [routerLink]="['/about']">About</a>
     </ng-container>
   </nav>
   

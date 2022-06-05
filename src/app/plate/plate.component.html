@@ -1,17 +1,39 @@
-<div>
-    <p>plate works!</p>
-    {{plate.name}}
-    <ul>
-        <li *ngFor="let item of plateIngredient"><a>{{item.name}} - expiry date: {{item.expirydate | date: 'shortDate'}}</a><a *ngIf="authService.isAdmin()"><button (click)="removeIngredient(plate.id, item.id)">Remove</button></a></li>
-    </ul>
-    <button [routerLink]="['/menu']">Go back</button>
-    <div *ngIf="authService.isAdmin()">
-        <button (click)="edit()">Add ingredient to plate</button>
+<div class="container">
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-auto">
+            <h1>{{plate.name}}</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-1" *ngFor="let item of plateIngredient">
+        <div class="col-md-3">
+            <div><b>{{item.name}}</b> - {{item.expirydate | date:'shortDate'}}</div>
+        </div>
+        <div *ngIf="authService.isAdmin()" class="col-md-auto">
+            <button class="btn btn-danger" (click)="removeIngredient(plate.id, item.id)">X</button>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-auto">
+            <button class="btn btn-primary" [routerLink]="['/menu']">Go back</button>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="authService.isAdmin()">
+    
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-auto" *ngIf="authService.isAdmin()">
+            <button class="btn btn-primary" (click)="edit()">Add ingredients</button>
+        </div>
     </div>
 </div>
 
-<div *ngIf="plateEdit">
-    <ul>
-        <li *ngFor="let item of ingredients"><a>{{item.name}} - expiry date: {{item.expirydate | date: 'shortDate'}}</a><button (click)="addIngredient(plate.id, item.id)">Add</button></li>
-    </ul>
+<div class="container" *ngIf="plateEdit">
+    <div class="row justify-content-center mt-1" *ngFor="let item of ingredients">
+        <div class="col-md-3">
+            <div><b>{{item.name}}</b> - {{item.expirydate | date:'shortDate'}}</div>
+        </div>
+        <div class="col-md-auto" *ngIf="authService.isAdmin()">
+            <button class="btn btn-success" (click)="addIngredient(plate.id, item.id)">Add</button>
+        </div>
+    </div>
 </div>

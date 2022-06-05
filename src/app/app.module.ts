@@ -14,6 +14,8 @@ import { CreateIngredientComponent } from './create-ingredient/create-ingredient
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreatePlateComponent } from './create-plate/create-plate.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AboutComponent } from './about/about.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     PlateComponent,
     CreateIngredientComponent,
     CreatePlateComponent,
+    AboutComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

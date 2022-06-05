@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row justify-content-center mt-1" *ngFor="let item of ingredients">
         <div class="col-md-4">
-            <b>{{item.name}}</b> - expiry date: {{item.expirydate | date: 'dd/MM/yyyy'}}
+            <b>{{item.name}}</b> <label *ngIf="authService.isAdmin()"> - expiry date: {{item.expirydate | date: 'dd/MM/yyyy'}}</label>
         </div>
-        <div class="col-md-auto">
+        <div *ngIf="authService.isAdmin()" class="col-md-auto">
             <button class="btn btn-danger" (click)="removeIngredient(item.id)">X</button>
         </div>
     </div>
