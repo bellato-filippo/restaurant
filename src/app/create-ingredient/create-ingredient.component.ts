@@ -33,7 +33,7 @@ export class CreateIngredientComponent {
     let name = this.form.controls['name'].value;
     let date = this.form.controls['expiryDate'].value;
     let lastId = this.ingredients[this.ingredients.length - 1].id;
-    this.ingredients.push(new Ingredient(lastId + 1, name, date));
+    this.httpService.postIngredient(new Ingredient(lastId + 1, name, date));
     this.router.navigate(['/ingredients']);
   }
 

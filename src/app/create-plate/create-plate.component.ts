@@ -32,7 +32,6 @@ export class CreatePlateComponent {
     }
     let name = this.form.controls['name'].value;
     let price = this.form.controls['price'].value;
-    console.log(name + " " + price);
     let max = 0;
     this.plates.forEach(element => {
       if (element.id > max) {
@@ -40,7 +39,7 @@ export class CreatePlateComponent {
       }
     });
     max++;
-    this.plates.push(new Plate(max, name, price));
-    this.router.navigate(['/plates/' + max]);
+    this.httpService.postPlate(new Plate(max, name, price));
+    this.router.navigate(['/plate/' + max]);
    }
 }
