@@ -13,12 +13,8 @@ import { HttpService } from '../services/http.service';
 export class CreatePlateComponent {
 
   form: FormGroup;
-  plates: Plate[] = [];
 
   constructor(public authService: AuthService, public formBuilder: FormBuilder, public httpService: HttpService, public router: Router) {
-    this.httpService.getPlates().subscribe(res => {
-      this.plates = res;
-    });
     this.form = formBuilder.group({
       'name': ['', Validators.required],
       'price': ['', Validators.required]
@@ -32,14 +28,7 @@ export class CreatePlateComponent {
     }
     let name = this.form.controls['name'].value;
     let price = this.form.controls['price'].value;
-    let max = 0;
-    this.plates.forEach(element => {
-      if (element.id > max) {
-        max = element.id;
-      }
-    });
-    max++;
-    this.httpService.postPlate(new Plate(max, name, price));
-    this.router.navigate(['/plate/' + max]);
+    this.httpService.postPlate(new Plate(0, name, price));
+    this.router.navigate(['/menu']);
    }
 }

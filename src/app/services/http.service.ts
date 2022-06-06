@@ -87,8 +87,8 @@ export class HttpService {
         });
     }
 
-    deleteHas(plateId: number, ingredientId: number) {
-            this.http.delete(this.ROOT_URL + "/has/" + plateId + "/" + ingredientId, {
+    async deleteHas(plateId: number, ingredientId: number) {
+        await this.http.delete(this.ROOT_URL + "/has/" + plateId + "/" + ingredientId, {
             responseType: 'text'
         }).subscribe(res => {
             console.log('Has deleted!');

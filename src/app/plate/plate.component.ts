@@ -19,7 +19,7 @@ export class PlateComponent {
   plate: Plate = new Plate();
   plateEdit: boolean;
   ingredients: Ingredient[] = [];
-  has: Has[] = [];
+  //has: Has[] = [];
   plateIngredient: Ingredient[] = [];
   form: FormGroup;
 
@@ -28,9 +28,11 @@ export class PlateComponent {
     this.httpService.getIngredients().subscribe(res => {
       this.ingredients = res;
     });
+    /*
     this.httpService.getHas().subscribe(res => {
       this.has = res;
     });
+    */
     let id = this.route.snapshot.paramMap.get('id') ?? "0";
     this.httpService.getPlateById(id).subscribe(res => {
       this.plate = res;
@@ -38,14 +40,16 @@ export class PlateComponent {
 
     this.httpService.getIngredientsByPlateId(id).subscribe(res => {
       this.plateIngredient = res;
-    });
+    })
 
+    /*
     let indexes: number[] = [];
     this.has.forEach(element => {
       if (element.plate == this.plate.id) {
         indexes.push(element.ingredient);
       }
     });
+    */
 
     this.form = formBuilder.group({
       'name': ['', Validators.required],
@@ -59,8 +63,8 @@ export class PlateComponent {
 
     addIngredient(plateId: number, ingredientId: number) {
       let found = false;
-      this.has.forEach(element => {
-        if (element.ingredient == ingredientId && element.plate == plateId) {
+      this.plateIngredient.forEach(element => {
+        if (element.id == ingredientId) {
           alert('Ingredient already exists');
           found = true;
           return;
@@ -71,14 +75,13 @@ export class PlateComponent {
         //not very elegant. Does the job for now
         this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
           this.router.navigate(['/plate/' + plateId]);
-      }); 
+      });
       } else {
         return;
       }
     }
 
     removeIngredient(plateId: number, ingredientId: number) {
-      console.log('Called!');
       this.httpService.deleteHas(plateId, ingredientId);
       this.router.navigateByUrl('/RefreshComponent', {skipLocationChange: true}).then(() => {
         this.router.navigate(['/plate/' + plateId]);
