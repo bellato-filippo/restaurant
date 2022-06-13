@@ -5,11 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+//root component
 export class AppComponent {
   title = 'restaurant';
-  auth: boolean;
-
-  constructor() {
-    this.auth = true;
-  }
 }

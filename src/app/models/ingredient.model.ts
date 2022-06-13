@@ -1,3 +1,4 @@
+// ingredient model
 export class Ingredient {
     id: number;
     name: string;

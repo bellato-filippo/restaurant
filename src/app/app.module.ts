@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
 
+//specifies all the modules and components used in the application
 @NgModule({
   declarations: [
     AppComponent,

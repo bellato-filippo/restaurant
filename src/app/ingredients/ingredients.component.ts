@@ -10,17 +10,20 @@ import { HttpService } from '../services/http.service';
 })
 export class IngredientsComponent {
 
+  // the list of ingredients
   ingredients: Ingredient[] = [];
 
   constructor(public authService: AuthService, public httpService: HttpService) {
-    this.authService = new AuthService();
+    // gets the list of ingredients from the database
     this.httpService.getIngredients().subscribe(res => {
       this.ingredients = res;
     });
    }
 
+   // removes the ingredient through the http service
    removeIngredient(id: number) {
     this.ingredients.forEach((element, index) => {
+      // removes the ingredient from the dynamic list
       if (element.id == id) {
         this.ingredients.splice(index, 1);
         return;

@@ -9,6 +9,7 @@ import { MenuComponent } from './menu/menu.component';
 import { Page404Component } from './page404/page404.component';
 import { PlateComponent } from './plate/plate.component';
 
+//specifies all the routes for the URL
 const routes: Routes = [
   {
     path: 'menu',

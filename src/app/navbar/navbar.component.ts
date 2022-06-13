@@ -8,9 +8,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavbarComponent {
 
-  active: number = 1;
   constructor(public authService: AuthService) {
-    this.authService = new AuthService();
+    
    }
 
 

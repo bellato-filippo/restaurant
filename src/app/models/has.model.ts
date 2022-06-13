@@ -1,3 +1,4 @@
+// has class model
 export class Has {
     plate: number;
     ingredient: number;

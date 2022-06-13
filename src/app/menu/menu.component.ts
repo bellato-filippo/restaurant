@@ -11,17 +11,20 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent {
   
+  // list of plates
   plates: Plate[] = [];
 
   constructor(public authService: AuthService, public httpService: HttpService) {
-    this.authService = new AuthService();
+    // gets the plates through the http service
     this.httpService.getPlates().subscribe(res => {
       this.plates = res;
     })  }
 
+  // removes the plate
   removePlate(id: number) {
     this.plates.forEach((element, index) => {
       if (element.id == id) {
+        // deletes the plate from the dynamic list
         this.plates.splice(index, 1);
         return;
       }
